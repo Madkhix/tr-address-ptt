@@ -1,18 +1,18 @@
 <?php
 
-namespace TrAddress\Console\Commands;
+namespace TrAddressPtt\Console\Commands;
 
 use Illuminate\Console\Command;
 
 class PublishJsonData extends Command
 {
-    protected $signature = 'traddress:publish-json';
+    protected $signature = 'traddress-ptt:publish-json';
     protected $description = 'Copy tr-address-data.json from vendor to project root';
 
     public function handle()
     {
-        $source = base_path('vendor/madkhix/tr-address/tr-address-data.json');
-        $destination = base_path('tr-address-data.json');
+        $source = base_path('vendor/madkhix/tr-address-ptt/tr-address-ptt-data.json');
+        $destination = base_path('tr-address-ptt-data.json');
 
         if (!file_exists($source)) {
             $this->error('Source JSON file not found in vendor directory.');
@@ -20,7 +20,7 @@ class PublishJsonData extends Command
         }
 
         if (copy($source, $destination)) {
-            $this->info('tr-address-data.json has been copied to your project root.');
+            $this->info('tr-address-ptt-data.json has been copied to your project root.');
             return 0;
         } else {
             $this->error('Failed to copy the JSON file.');

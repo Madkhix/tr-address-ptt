@@ -3,15 +3,16 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use TrAddress\Models\City;
-use TrAddress\Models\District;
-use TrAddress\Models\Subdistrict;
+use TrAddressPtt\Models\City;
+use TrAddressPtt\Models\District;
+use TrAddressPtt\Models\Subdistrict;
+use Illuminate\Support\Facades\DB;
 
 class SubdistrictSeeder extends Seeder
 {
     public function run()
     {
-        $jsonPath = config('traddress.default_json_path');
+        $jsonPath = config('traddressptt.default_json_path');
         $json = file_get_contents($jsonPath);
         $data = json_decode($json, true);
 
@@ -33,17 +34,25 @@ class SubdistrictSeeder extends Seeder
         $total = count($subdistrictNames);
         $this->command->info("Seeding subdistricts...");
         $this->command->getOutput()->progressStart($total);
-        foreach ($subdistrictNames as $key => $info) {
-            $district = District::where('name', $info['district_name'])->first();
-            if ($district) {
-                Subdistrict::firstOrCreate([
-                    'district_id' => $district->id,
-                    'name' => $info['subdistrict_name'],
-                ]);
-            }
-            $this->command->getOutput()->progressAdvance();
+
+        $subdistrictCount = 0;
+        try {
+            DB::transaction(function () use ($subdistrictNames, &$subdistrictCount) {
+                foreach ($subdistrictNames as $key => $info) {
+                    $district = \TrAddressPtt\Models\District::where('name', $info['district_name'])->first();
+                    if ($district) {
+                        \TrAddressPtt\Models\Subdistrict::firstOrCreate([
+                            'district_id' => $district->id,
+                            'name' => $info['subdistrict_name'],
+                        ]);
+                        $subdistrictCount++;
+                    }
+                }
+            });
+            $this->command->getOutput()->progressFinish();
+            $this->command->info("Subdistricts seeding completed! Total: $subdistrictCount");
+        } catch (\Throwable $e) {
+            $this->command->error('An error occurred during subdistrict seeding: ' . $e->getMessage());
         }
-        $this->command->getOutput()->progressFinish();
-        $this->command->info("Subdistricts seeding completed!");
     }
 } 

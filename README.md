@@ -1,29 +1,29 @@
-# tr-address
+# tr-address-ptt
 
 A Laravel package for Turkey's provinces, districts, subdistricts (quarters), neighborhoods, and postal codes. Easily import, query, and keep up-to-date address data from PTT's official source.
 
 ## Installation
 
 ```bash
-composer require madkhix/tr-address
+composer require madkhix/tr-address-ptt
 ```
 
 ## Publishing Migrations, Seeders, and Config
 
 ```bash
-php artisan vendor:publish --provider="TrAddress\TrAddressServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="TrAddressPtt\TrAddressServiceProvider" --tag="migrations"
 php artisan migrate
-php artisan vendor:publish --provider="TrAddress\TrAddressServiceProvider" --tag="seeders"
-php artisan vendor:publish --provider="TrAddress\TrAddressServiceProvider" --tag="traddress-config"
+php artisan vendor:publish --provider="TrAddressPtt\TrAddressServiceProvider" --tag="seeders"
+php artisan vendor:publish --provider="TrAddressPtt\TrAddressServiceProvider" --tag="traddressptt-config"
 ```
 
-> After running the Python scraper, copy the generated `tr-address-data.json` file to your Laravel project root (where the `artisan` file is located). You can also use the following artisan command to copy it automatically:
+> After running the Python scraper, copy the generated `tr-address-ptt-data.json` file to your Laravel project root (where the `artisan` file is located). You can also use the following artisan command to copy it automatically:
 >
 > ```bash
-> php artisan traddress:publish-json
+> php artisan traddress-ptt:publish-json
 > ```
 
-> You can change the JSON data file path in `config/traddress.php` if needed.
+> You can change the JSON data file path in `config/traddressptt.php` if needed.
 
 ## Migration Structure
 
@@ -59,7 +59,7 @@ Each table has its own seeder:
 Seed all data:
 
 ```bash
-php artisan db:seed --class=Database\Seeders\TrAddressSeeder
+php artisan db:seed --class=Database\Seeders\TrAddressPttSeeder
 ```
 
 Or seed a specific table:
@@ -76,9 +76,9 @@ php artisan db:seed --class=Database\Seeders\NeighborhoodSeeder
 ## Usage
 
 ```php
-use TrAddress\Models\City;
-use TrAddress\Models\Subdistrict;
-use TrAddress\Models\Neighborhood;
+use TrAddressPtt\Models\City;
+use TrAddressPtt\Models\Subdistrict;
+use TrAddressPtt\Models\Neighborhood;
 
 $cities = City::all();
 $subdistricts = Subdistrict::where('district_id', $districtId)->get();
@@ -118,14 +118,12 @@ https://github.com/madkhix/tr-address-fetcher-ptt
    ```bash
    python fetch_tr_address_data.py
    ```
-3. The script will generate a `tr-address-data.json` file.
+3. The script will generate a `tr-address-ptt-data.json` file.
 4. Copy this file to your Laravel project root (where `artisan` is located).
 5. Import the data using the package's artisan command:
    ```bash
-   php artisan traddress:import tr-address-data.json
+   php artisan traddress-ptt:import-ptt tr-address-ptt-data.json
    ```
-
-> This approach keeps the PHP package clean and dependency-free, while still allowing advanced users to update the address data as needed.
 
 ## License
 MIT 

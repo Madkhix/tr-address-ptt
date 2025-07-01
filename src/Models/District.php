@@ -1,10 +1,10 @@
 <?php
 
-namespace TrAddress\Models;
+namespace TrAddressPtt\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use TrAddress\Models\City;
-use TrAddress\Models\Neighborhood;
+use TrAddressPtt\Models\City;
+use TrAddressPtt\Models\Neighborhood;
 
 class District extends Model
 {

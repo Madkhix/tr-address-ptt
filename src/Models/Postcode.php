@@ -1,9 +1,9 @@
 <?php
 
-namespace TrAddress\Models;
+namespace TrAddressPtt\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use TrAddress\Models\Neighborhood;
+use TrAddressPtt\Models\Neighborhood;
 
 class Postcode extends Model
 {

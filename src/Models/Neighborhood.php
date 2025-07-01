@@ -1,11 +1,11 @@
 <?php
 
-namespace TrAddress\Models;
+namespace TrAddressPtt\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use TrAddress\Models\District;
-use TrAddress\Models\Postcode;
-use TrAddress\Models\Subdistrict;
+use TrAddressPtt\Models\District;
+use TrAddressPtt\Models\Postcode;
+use TrAddressPtt\Models\Subdistrict;
 
 class Neighborhood extends Model
 {

@@ -1,11 +1,11 @@
 {
-  "name": "madkhix/tr-address",
+  "name": "madkhix/tr-address-ptt",
   "description": "A Laravel package for Turkey's provinces, districts, neighborhoods, and postal codes.",
   "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "TrAddress\\": "src/"
+      "TrAddressPtt\\": "src/"
     }
   },
   "require": {
@@ -15,7 +15,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "TrAddress\\TrAddressServiceProvider"
+        "TrAddressPtt\\TrAddressServiceProvider"
       ]
     }
   }

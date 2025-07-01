@@ -1,9 +1,9 @@
 <?php
 
-namespace TrAddress\Models;
+namespace TrAddressPtt\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use TrAddress\Models\District;
+use TrAddressPtt\Models\District;
 
 class City extends Model
 {

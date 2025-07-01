@@ -1,6 +1,6 @@
 <?php
 
-namespace TrAddress;
+namespace TrAddressPtt;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -17,16 +17,16 @@ class TrAddressServiceProvider extends ServiceProvider
         ], 'seeders');
 
         $this->publishes([
-            __DIR__.'/../config/traddress.php' => config_path('traddress.php'),
-        ], 'traddress-config');
+            __DIR__.'/../config/traddressptt.php' => config_path('traddressptt.php'),
+        ], 'traddressptt-config');
     }
 
     public function register()
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \TrAddress\Console\Commands\ImportTrAddress::class,
-                \TrAddress\Console\Commands\PublishJsonData::class,
+                \TrAddressPtt\Console\Commands\ImportTrAddressPtt::class,
+                \TrAddressPtt\Console\Commands\PublishJsonData::class,
             ]);
         }
     }
