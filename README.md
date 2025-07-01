@@ -109,7 +109,7 @@ The seeders will automatically parse and store these fields in the correct table
 
 This package does **not** include the Python data fetcher script by default. To update the address data from the official PTT source, use the separate Python script available at:
 
-https://github.com/madkhix/tr-address-fetcher
+https://github.com/madkhix/tr-address-fetcher-ptt
 
 **Usage:**
 
